@@ -52,15 +52,21 @@
                     $.data(currentElem[0], "timeout", setTimeout(scan, 1000));
                 };
 
+
+                var options = {facingMode:  "environment"};
+
                 // Call the getUserMedia method with our callback functions
+
                 if (navigator.getUserMedia) {
-                    navigator.getUserMedia({video: true}, successCallback, function(error) {
+                    console.log("using camera : ",options);
+                    navigator.getUserMedia({video: options}, successCallback, function(error) {
                         videoError(error, localMediaStream);
                     });
                 } else {
                     console.log('Native web camera streaming (getUserMedia) not supported in this browser.');
                     // Display a friendly "sorry" message to the user
                 }
+
 
                 qrcode.callback = function (result) {
                     qrcodeSuccess(result, localMediaStream);
